@@ -5,7 +5,7 @@ import { Estudiante } from './entities/estudiante.entity';
 
 @Injectable()
 export class EstudiantesService {
-  estudiantes: Estudiante[];
+  estudiantes: Estudiante[] = [];
 
   constructor() {
     
