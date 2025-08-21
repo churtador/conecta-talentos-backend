@@ -1,4 +1,4 @@
-import { BadGatewayException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadGatewayException, BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateEstudianteDto } from './dto/create-estudiante.dto';
 import { UpdateEstudianteDto } from './dto/update-estudiante.dto';
 import { Estudiante } from './entities/estudiante.entity';
@@ -18,7 +18,7 @@ export class EstudiantesService {
         estudiante.email === createEstudianteDto.email,
     );
     if (estudianteEncontrado) {
-      throw new BadGatewayException('El correo del estudiante ya está registrado')
+      throw new BadRequestException('El correo del estudiante ya está registrado')
     }
     const estudianteCreado = new Estudiante(
       this.estudiantes.length +1,

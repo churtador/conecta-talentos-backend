@@ -1,4 +1,4 @@
-import { BadGatewayException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadGatewayException, BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateEmpresaDto } from './dto/create-empresa.dto';
 import { UpdateEmpresaDto } from './dto/update-empresa.dto';
 import { Empresa } from './entities/empresa.entity';
@@ -15,7 +15,7 @@ export class EmpresasService {
         empresa.nombre === createEmpresaDto.nombre,
     );
     if(empresaEncontrada) {
-      throw new BadGatewayException('El nombre de empresa ya está registrado.');
+      throw new BadRequestException('El nombre de empresa ya está registrado.');
     }
     const empresaCreada = new Empresa(
       this.empresas.length + 1,
